@@ -58,6 +58,11 @@ def get_sip_dir_flags(config):
         if os.path.exists(default_sip_dir):
             return default_sip_dir, sip_flags
 
+        # arch python3 pkg uses /usr/lib/python3.8/site-packages/PyQt5/bindings directory
+        default_sip_dir = os.path.join(sipconfig._pkg_config['default_mod_dir'], 'PyQt5', 'bindings')
+        if os.path.exists(default_sip_dir):
+            return default_sip_dir, sip_flags
+
         # Homebrew installs sip files here by default
         default_sip_dir = os.path.join(sipconfig._pkg_config['default_sip_dir'], 'Qt5')
         if os.path.exists(default_sip_dir):
